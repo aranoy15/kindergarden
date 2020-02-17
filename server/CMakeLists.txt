@@ -9,6 +9,27 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_BUILD_TYPE Debug)
 
+include(ExternalProject)
+
+set(EXTERNAL_INSTALL_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/lib)
+
+
+ExternalProject_Add(jwt
+    GIT_REPOSITORY https://github.com/arun11299/cpp-jwt.git
+    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
+    INSTALL_COMMAND cmake -E echo "Skipping install step."
+    CONFIGURE_COMMAND cmake -E echo "Skipping configure step."
+    BUILD_COMMAND cmake -E echo "Skipping build step."
+)
+
+ExternalProject_Add(sqlite
+    GIT_REPOSITORY https://github.com/SqliteModernCpp/sqlite_modern_cpp.git
+    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
+    INSTALL_COMMAND cmake -E echo "Skipping install step."
+    CONFIGURE_COMMAND cmake -E echo "Skipping configure step."
+    BUILD_COMMAND cmake -E echo "Skipping build step."
+)
+
 if (APPLE)
     set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl@1.1") 
     set(OPENSSL_LIBRARIES "/usr/local/opt/openssl@1.1/lib")
