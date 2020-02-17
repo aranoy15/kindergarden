@@ -35,6 +35,11 @@ if (APPLE)
     set(OPENSSL_LIBRARIES "/usr/local/opt/openssl@1.1/lib")
 endif()
 
+set(OPENSSL_USE_STATIC_LIBS TRUE)
+set(CPPRESTSDK_USE_STATIC_LIBS TRUE)
+set(Boost_NO_BOOST_CMAKE 1)
+
+find_package(OpenSSL)
 find_package(cpprestsdk REQUIRED)
 find_package(Boost 1.72.0 COMPONENTS random system thread filesystem chrono atomic date_time regex)
 find_package(SQLite3)
