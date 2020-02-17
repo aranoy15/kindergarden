@@ -1,6 +1,4 @@
-add_library(lib STATIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/singleton.cpp
-)
+add_library(lib STATIC "")
 
 add_subdirectory(controllers)
 add_subdirectory(models)

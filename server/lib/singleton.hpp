@@ -11,3 +11,10 @@ public:
 
     T& instance();
 };
+
+template<typename T>
+T& Singleton<T>::instance()
+{
+    static T result;
+    return result;
+}
