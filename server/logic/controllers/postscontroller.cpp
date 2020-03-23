@@ -3,6 +3,7 @@
 #include <chrono>
 #include <jwt/jwt.hpp>
 #include <sqlite_modern_cpp.h>
+#include <logic/utils/isauthorized.hpp>
 
 using namespace std;
 using namespace web;
@@ -22,6 +23,8 @@ void PostsController::get_handle(http_request request)
 {
     using namespace jwt::params;
 
+    utils::is_authorized(request);
+
     static string_t secret_key = "secret_key";
 
     jwt::jwt_object obj{algorithm("HS256"), payload({{"some", "payload"}}), secret(secret_key.c_str())};
@@ -34,7 +37,6 @@ void PostsController::get_handle(http_request request)
 
     auto paths = http::uri::split_query(http::uri::decode(uri_query));
 
-    //request.headers().add("set-cookie", "token=" + obj.signature());
     http_response response(status_codes::OK);
 
     response.headers().add("set-cookie", "token=" + obj.signature());
