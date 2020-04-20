@@ -68,9 +68,8 @@ int main()
     utility::string_t address = U(settings.address);
     utility::string_t version = U(settings.version);
 
-    std::unique_ptr<BaseField> field_test = std::make_unique<Field<float>>();
-
-    float test_value = field_test->value();
+    //std::unique_ptr<BaseField> field_test = std::make_unique<Field<float>>();
+    //float test_value = field_test->value();
 
     uri_builder uri(address + ":" + port);
     uri.append(version);
